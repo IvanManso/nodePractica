@@ -13,6 +13,10 @@ require("./models/spotModel");
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+//API
+var apiUsers = require("./routes/api/v1/anuncio");
+
+
 var app = express();
 
 // view engine setup
@@ -29,6 +33,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+
+//Rutas de API V1
+app.use("/api/v1/anuncio", apiUsers);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

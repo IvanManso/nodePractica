@@ -6,7 +6,7 @@ var dbConnection = {
 };
 
 
-client.connect('mongodb://localhost:27017/usoNode', function(err, conn) {
+client.connect('mongodb://localhost:27017/anuncios', function(err, conn) {
         if (err){
         	console.log("Cant connect");
         	process.exit(1);

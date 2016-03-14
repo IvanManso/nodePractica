@@ -24,7 +24,7 @@ function cargaAnunciosDefect(callback) {
                 console.log("Ha habido un error: \n", err);
             } else { //o lanzar excepción o return; o return console.log(...);
                 var defecto = JSON.parse(data); //ahora recorremos el array
-                for (var i = 0; i < 2; i++) {
+                for (var i = 0; i < defecto.anuncios.length; i++) {
                     var anuncio = new Anuncio(defecto.anuncios[i]);
                     anuncio.save(function(err, saved) {
                         //console.log("Los datos del anuncio son", data.anuncios[i]);
@@ -55,7 +55,7 @@ function cargaUsuariosDefect(callback) {
                 console.log("Ha habido un error: \n", err);
             } else { //o lanzar excepción o return; o return console.log(...);
                 var defecto = JSON.parse(data); //ahora recorremos el array
-                for (var i = 0; i < 2; i++) {
+                for (var i = 0; i < defecto.usuarios.length; i++) {
                     var user = new User(defecto.usuarios[i]);
                     user.save(function(err, saved) {
                         //console.log("Los datos del anuncio son", data.anuncios[i]);

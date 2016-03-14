@@ -18,7 +18,7 @@ var anuncioSchema = mongoose.Schema({
 
 anuncioSchema.statics.list = function(sort, cb) {
     //preparamos la query sin ejecutarla (no ponemos callback a find)
-    var query = User.find({});
+    var query = Spot.find({});
     //añadimos más parámetros a la query
     query.sort(sort);
 
