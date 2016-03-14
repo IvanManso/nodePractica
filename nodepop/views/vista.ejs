@@ -1,0 +1,14 @@
+<html >
+<head>
+
+</head>
+<body>
+	<% users.forEach(function(user){ %>
+		Nombre<p><%= user.nombre %> "></p>
+		Venta<p><%= user.venta %> "></p>
+		Precio<p><%= user.precio %> "></p>
+		Foto<img src="<%= user.foto %>"></img>
+		Tags<p><%= user.tags %> "></p>
+		<% }) %>
+</body>
+</html>
