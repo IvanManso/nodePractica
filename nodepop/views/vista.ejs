@@ -4,11 +4,11 @@
 </head>
 <body>
 	<% spots.forEach(function(spots){ %>
-		Nombre<p><%= spots.nombre %></p>
-		Venta<p><%= spots.venta %> "></p>
-		Precio<p><%= spots.precio %></p>
-		Foto<img src="<%= spots.foto %>"></img>
-		Tags<p><%= spots.tags %></p>
+		<p>Nombre: <%= spots.nombre %></p>
+		<p>Venta: <%= spots.venta %></p>
+		<p>Precio: <%= spots.precio %></p>
+		<p>Foto: <img src="<%= spots.foto %>"></img></p>
+		<p>Tags: <%= spots.tags %></p>
 		<% }) %>
 </body>
 </html>

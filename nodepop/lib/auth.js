@@ -1,19 +1,32 @@
 "use strict";
 
+require('../models/userModel.js');
+require('basic-auth-mongoose');
+
 var basicAuth = require("basic-auth");
+var mongoose = require("mongoose");
+var User = mongoose.model("User");
 
+/*    PREGUNTAR MAÑANA ( COMENTARIOS AQUÍ Y EN ANUNCIO.JS HAY 2)
 
-var fn = function(user, pass, email) {
+var fn = function() {
     return function(req, res, next) {
         var userRequest = basicAuth(req);
-        console.log(user);
-        if (!userRequest || userRequest.name !== user || userRequest.pass !== pass || userRequest.email !== email) { // aquí haríamos un find del identificador
-            res.set("WWW-Authenticate", "Basic realm=Authorization Required"); //saca el prompt para que introduzca u y p
-            res.send(401);
-            return;
-        }
-        next(); //para dejarle seguir al usuario al haberlo verificarlo
+        console.log(userRequest);
+        User.findOne({ "nombre": userRequest.name }, function(err, rows) {
+            if (err) {
+                res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
+                return res.sendStatus(401);
+            }
+            if (rows.authenticate(userRequest.pass)) {
+                next();
+            } else {
+                res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
+                return res.sendStatus(401);
+            }
+        });
     };
 };
 
 module.exports = fn;
+*/
