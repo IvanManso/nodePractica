@@ -2,18 +2,34 @@
 
 var express = require('express');
 var router = express.Router();
+var conn = require('../lib/connectMongoose');
+var mongoose = require("mongoose");
+var Anuncio = mongoose.model("Spot");
 
-router.get("/", function(req, res){
+//router.get("/", function(req, res){ //los filtros más específicos antes de los más genéricos
 
-	if(req.query.name){
-		//recorremos todos los nombres de la DB para comprobar si coincide con alguno
+//Anuncio.find({});
+
+router.get("/:name[((a-z)|(A-Z)|(0-9))+]", function(req, res){
+	if(req.params.name === undefined){
+		console.log("Parámetros sin definir");
+		return res.sendStatus(401);
 	}
-	if(req.query.tag){
-		//recorremos todos los tags de la DB para comprobar si coincide con alguno
+	else{
+		var nombreBusq = Anuncio.find({name: req.params.name});
+		console.log("El nombre de la búsqueda es", req.params.name);
+		if(nombreBusq === undefined){
+			console.log("El nombre de la búsqueda está sin definir");
+			return res.sendStatus(404);
+		}
+		else{
+			console.log("Se va a renderizar los objetos con el nombre de búsqueda", nombreBusq);
+			res.render("vista",{spots:nombreBusq});
+		}
+		}
 	}
-	console.log(req.query);
-	res.send("Hola express");
-
 });
+
+
 
 module.exports = router;
