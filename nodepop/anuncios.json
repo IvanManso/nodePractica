@@ -17,5 +17,11 @@
         "precio": 100.00,
         "foto": "camisa.png",
         "tags": ["camisa", "lifestyle"]
+    }, {
+        "nombre": "Camioneta",
+        "venta": false,
+        "precio": 400.00,
+        "foto": "camioneta.png",
+        "tags": ["motor", "camioneta"]
     }]
 }

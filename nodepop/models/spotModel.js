@@ -18,8 +18,7 @@ var anuncioSchema = mongoose.Schema({
     tags: [String]
 });
 
-
-anuncioSchema.statics.list = function(filter, sort, limit, cb) {
+anuncioSchema.statics.list = function(filter, sort, limit, start, cb) {
     //preparamos la query sin ejecutarla (no ponemos callback a find)
     console.log(filter);
     console.log(limit);
@@ -32,6 +31,10 @@ anuncioSchema.statics.list = function(filter, sort, limit, cb) {
 
     if (limit !== null) {
         query.limit(limit);
+    }
+
+    if(start !== null){
+        query.skip(start);
     }
 
     //la ejecutamos

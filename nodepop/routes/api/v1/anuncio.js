@@ -26,66 +26,66 @@ var Anuncio = mongoose.model("Spot");
 }); */
 /* GET users listing. */
 router.get('/', function(req, res) {
-    var nombre = req.query.nombre || "";
-    var venta = req.query.venta || "";
-    var precio = req.query.precio || "";
-    var foto = req.query.foto || "";
-    var tags = req.query.tags || "";
-    var sort = req.query.sort || "nombre";
-    var limit = req.query.limit || "";
-    var start = req.query.start || "";
-    var filter = {};
-    var precioSplit = precio.split("-");
-    console.log("precioSplit");
-    patternMenor =  /-\d/;
-    patternMayor = /\d-/;
-    patternBetween = /\d-\d/;
-    patternDigito = /\d/;
+     var nombre = req.query.nombre || "";
+     var venta = req.query.venta || "";
+     var precio = req.query.precio || "";
+     var foto = req.query.foto || "";
+     var tags = req.query.tags || "";
+     var sort = req.query.sort || "nombre";
+     var limit = req.query.limit || "";
+     var start = req.query.start || "";
+     var filter = {};
+     var precioSplit = precio.split("-");
+     patternMenor =  /-\d/;
+     patternMayor = /\d-/;
+     patternBetween = /\d-\d/;
+     patternDigito = /\d/;
 
 
-    if (nombre !== "") {
-        filter.nombre = new RegExp('^' + nombre, "i");
-        //filter.nombre = nombre;
-    }
-    //console.log(filter, tags);
-    if (tags !== "") {
-        filter.tags = tags;
-        //console.log(filter, tags);
-    }
-    if (venta !== "") {
-        filter.venta = venta;
-    }
-    if (limit !== "") {
-        limit = parseInt(limit);
-    }
-    if(start !== ""){
-        start = parseInt(req.query.skip(start))
-    }
-    if (precio !== "") {
-        if (patternBetween.test(precio)) {
-            filter.precio = { '$gte': precioSplit[0], '$lte': precioSplit[1] };
-        }
-        else if (patternMayor.test(precio)) { //precio mayor que pmax
-            filter.precio = { '$gte': precioSplit[0] };
-        }
-        else if (patternMenor.test(precio)) { //precio menor a pmax
-            filter.precio = { '$lte': precioSplit[1] };
-        }
-        else if(patternDigito.test(precio)) { //un sólo precio con pmax
-            filter.precio = precioSplit[0];
-        }
-    }
+     if (nombre !== "") {
+         filter.nombre = new RegExp('^' + nombre, "i");
+         //filter.nombre = nombre;
+     }
+     //console.log(filter, tags);
+     if (tags !== "") {
+         filter.tags = tags;
+         //console.log(filter, tags);
+     }
+     if (venta !== "") {
+         filter.venta = venta;
+     }
+     if (limit !== "") {
+         limit = parseInt(limit);
+     }
+     if(start !== ""){
+         start = parseInt(start);
+     }
+     if (precio !== "") {
+         if (patternBetween.test(precio)) {
+             filter.precio = { '$gte': precioSplit[0], '$lte': precioSplit[1] };
+         }
+         else if (patternMayor.test(precio)) { //precio mayor que pmax
+             filter.precio = { '$gte': precioSplit[0] };
+         }
+         else if (patternMenor.test(precio)) { //precio menor a pmax
+             filter.precio = { '$lte': precioSplit[1] };
+         }
+         else if(patternDigito.test(precio)) { //un sólo precio con pmax
+             filter.precio = precioSplit[0];
+         }
+     }
 
 
-    Anuncio.list(filter, sort, limit, function(err, rows) {
-        if (err) {
-            return res.json({ result: false, err: err });
-        } else {
-            return res.json({ result: true, rows: rows });
-        }
+     Anuncio.list(filter, sort, limit, start, function(err, rows) {
+         if (err) {
+             return res.json({ result: false, err: err });
+         } else {
+             return res.json({ result: true, rows: rows });
+         }
     });
 
-});
+  });
+
 
 router.get('/form', function(req, res, next) {
     var Anuncio = mongoose.model("Spot");
