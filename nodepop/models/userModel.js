@@ -1,6 +1,8 @@
 "use strict";
 
 //creamos un modelo
+var express = require('express');
+var router = express.Router();
 var conn = require('../lib/connectMongoose');
 var mongoose = require("mongoose");
 
@@ -31,6 +33,29 @@ usuarioSchema.statics.list = function(sort, cb) {
         return;
     });
 };
+
+router.post("/", function(req, res){
+    var user = new User(req.body);
+    user.save(function(err, rows){
+         if (err) {
+            return res.json({result:false, err:err});
+        }
+        else{
+            return res.json({result:true, rows:rows});
+        }
+    });
+});
+
+router.delete("/", function(req, res){
+    User.remove(function(err){
+          if (err) {
+            return res.json({result:false, err:err});
+        }
+        else{
+            return res.json({result:true, rows:""});
+        }
+    });
+});
 
 //Lo registro en mongoose
 usuarioSchema.plugin(require('basic-auth-mongoose'));

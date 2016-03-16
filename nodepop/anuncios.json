@@ -11,5 +11,11 @@
         "precio": 50.00,
         "foto": "iphone.png",
         "tags": ["lifestyle", "mobile"]
+    }, {
+        "nombre": "Camisa",
+        "venta": true,
+        "precio": 100.00,
+        "foto": "camisa.png",
+        "tags": ["camisa", "lifestyle"]
     }]
 }

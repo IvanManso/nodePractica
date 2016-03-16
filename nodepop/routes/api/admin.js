@@ -1,4 +1,4 @@
-"use strict";
+/*"use strict";
 
 var express = require('express');
 var router = express.Router();
@@ -32,4 +32,4 @@ router.get("/:name[((a-z)|(A-Z)|(0-9))+]", function(req, res){
 
 
 
-module.exports = router;
+module.exports = router; */
