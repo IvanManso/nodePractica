@@ -33,7 +33,7 @@ usuarioSchema.statics.list = function(sort, cb) {
         return;
     });
 };
-
+/*
 router.post("/", function(req, res){
     var user = new User(req.body);
     user.save(function(err, rows){
@@ -56,6 +56,7 @@ router.delete("/", function(req, res){
         }
     });
 });
+*/
 
 //Lo registro en mongoose
 usuarioSchema.plugin(require('basic-auth-mongoose'));
