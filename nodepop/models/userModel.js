@@ -19,7 +19,6 @@ var usuarioSchema = mongoose.Schema({
 });
 
 
-
 usuarioSchema.statics.list = function(sort, cb) {
     //preparamos la query sin ejecutarla (no ponemos callback a find)
     var query = User.find({});
@@ -41,20 +40,18 @@ usuarioSchema.statics.list = function(sort, cb) {
 //usuarioSchema.plugin(require('basic-auth-mongoose'));
 var User = mongoose.model("User", usuarioSchema);
 
-/*
-
-router.post("/", function(req, res){
-    var user = new User(req.body);
-    user.save(function(err, rows){
-         if (err) {
-            return res.json({result:false, err:err});
-        }
-        else{
-            return res.json({result:true, rows:rows});
+/*router.post("/", function(req, res) {
+    User.save(function(err, saved) {
+        if (err) {
+            return res.json({ result: false, err: err });
+        } else {
+            return res.json({ result: true, rows: saved });
         }
     });
-});
+});*/
 
+
+/*
 router.delete("/", function(req, res){
     User.remove(function(err){
           if (err) {
@@ -66,7 +63,3 @@ router.delete("/", function(req, res){
     });
 });
 */
-
-//Lo registro en mongoose
-/*usuarioSchema.plugin(require('basic-auth-mongoose'));
-var User = mongoose.model("User", usuarioSchema);*/
