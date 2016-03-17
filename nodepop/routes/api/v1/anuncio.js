@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require("mongoose");
 var auth = require("../../../lib/auth"); //nos traemos el módulo auth.js para que nos los traiga y usarlo donde quiera
-var passwordHash = require('password-hash');
+//var passwordHash = require('password-hash');
 var Anuncio = mongoose.model("Spot");
 var User = mongoose.model("User");
 
@@ -13,9 +13,9 @@ router.use(auth());
 //llamamos a la función auth que queremos que aparezca (middleware)
 
 /* GET users listing. */
-router.get("/", auth("admin", "pass"), function(req, res) { //podemons meter varios middleware en cuanto coincida esa ruta "/"
+/*router.get("/", auth(), function(req, res) { //podemons meter varios middleware en cuanto coincida esa ruta "/"
 
-    var sort = req.query.sort || "nombre";
+    var sort = req.query.sort || "username";
 
     User.list(sort, function(err, rows) {
         if (err) {
@@ -25,7 +25,7 @@ router.get("/", auth("admin", "pass"), function(req, res) { //podemons meter var
         //lo mando en JSON
         res.json({ result: true, rows: rows });
     });
-});
+});*/
 
 /* GET users listing. */
 router.get('/', function(req, res) {

@@ -5,11 +5,11 @@ var fs = require("fs");
 require("./models/spotModel.js");
 require("./models/userModel.js");
 
-var passwordHash = require('password-hash');
+
+var passwordHash = require('sha256');
 var mongoose = require("mongoose");
 var Anuncio = mongoose.model("Spot");
 var User = mongoose.model("User");
-
 
 
 function cargaAnunciosDefect(callback) {
@@ -36,7 +36,7 @@ function cargaAnunciosDefect(callback) {
                     });
                 }
             }
-            console.log(defecto);
+            //console.log(defecto);
             console.log("FIN");
         });
     });
@@ -57,8 +57,10 @@ function cargaUsuariosDefect(callback) {
                 var defecto = JSON.parse(data); //ahora recorremos el array
                 for (var i = 0; i < defecto.usuarios.length; i++) {
                     var user = new User(defecto.usuarios[i]);
+                    console.log(user["nombre"]);
                     console.log(user["clave"]);
-                    user.clave = passwordHash.generate(user["clave"]);
+                    user.clave = passwordHash(user["clave"]);
+                    console.log(user["clave"]);
                     user.save(function(err, saved) {
                         //console.log("Los datos del anuncio son", data.anuncios[i]);
                         if (err) {

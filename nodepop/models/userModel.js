@@ -6,7 +6,9 @@ var router = express.Router();
 var conn = require('../lib/connectMongoose');
 var mongoose = require("mongoose");
 
-//var conn = require('../lib/connectMongo'); conectar con drivers
+
+
+var conn = require('../lib/connectMongo'); //conectar con drivers
 
 //Creo el esquema
 
@@ -15,6 +17,8 @@ var usuarioSchema = mongoose.Schema({
     email: String,
     clave: String
 });
+
+
 
 usuarioSchema.statics.list = function(sort, cb) {
     //preparamos la query sin ejecutarla (no ponemos callback a find)
@@ -33,7 +37,12 @@ usuarioSchema.statics.list = function(sort, cb) {
         return;
     });
 };
+
+//usuarioSchema.plugin(require('basic-auth-mongoose'));
+var User = mongoose.model("User", usuarioSchema);
+
 /*
+
 router.post("/", function(req, res){
     var user = new User(req.body);
     user.save(function(err, rows){
@@ -59,5 +68,5 @@ router.delete("/", function(req, res){
 */
 
 //Lo registro en mongoose
-usuarioSchema.plugin(require('basic-auth-mongoose'));
-var User = mongoose.model("User", usuarioSchema);
+/*usuarioSchema.plugin(require('basic-auth-mongoose'));
+var User = mongoose.model("User", usuarioSchema);*/
