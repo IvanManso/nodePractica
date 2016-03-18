@@ -1,34 +1,34 @@
 #DESCRIPCIÓN
 
-*Desarrollo de una API mediante el uso de las tecnologías Node.js, express y Mongo.db.
-*Nodepop es una plataforma de venta o búsqueda de artículos de segunda mano.
+Desarrollo de una API mediante el uso de las tecnologías Node.js, express y Mongo.db.
+Nodepop es una plataforma de venta o búsqueda de artículos de segunda mano.
 
 #INTRUCCIONES DE USO DE NODEPOP
 
 ##INSTALACIÓN
 
-*Comenzaremos con `$npm install` para instalar todas las dependencias.
+Comenzaremos con `$npm install` para instalar todas las dependencias.
 
-*Para iniciar Nodepop eliminando los datos que se encuentran en la DB y que aparezcan los datos por defecto ejecutar comando:
+Para iniciar Nodepop eliminando los datos que se encuentran en la DB y que aparezcan los datos por defecto ejecutar comando:
 `$npm run install_db` (ya que en dicha variable tenemos introducido el script que queremos que se ejecute al iniciar la app).
 
-*Deberás tener abierta la conexión a la DB de Mongo y un terminal en el que corras la API.
+Deberás tener abierta la conexión a la DB de Mongo y un terminal en el que corras la API.
 
 ##FUNCIONALIDADES
 
-*Para poder visualizar los anuncios predefinidos debemos de estar registrados en la BD (además de esto encontrarnos en la url "localhost:3000/api/v1/anuncio", por ello debemos hacer login con un user y pass correctos:
+Para poder visualizar los anuncios predefinidos debemos de estar registrados en la BD (además de esto encontrarnos en la url "localhost:3000/api/v1/anuncio", por ello debemos hacer login con un user y pass correctos:
 
 	-Si introducimos el nombre y la contraseña incorrectos nos aparecerá que no se puede conectar y tendremos reiniciar el navegador.
 	-Si lo que introducimos mal es sólo la clave, nos volverá a pedir el user y la pass.
 	-Si los introducimos correctamente los aparecerán los anuncios cargados de la DB en formato .JSON.
 
-*Si nos estamos registrados en la DB deberemos realizar una petición post con los parámetros "nombre", "email" y "clave" a través de la url "http://localhost:3000/routes/users":
+Si nos estamos registrados en la DB deberemos realizar una petición post con los parámetros "nombre", "email" y "clave" a través de la url "http://localhost:3000/routes/users":
 
 	-Si los campos de "nombre", "email" y/o "clave" se han introducido vacíos nos dirá de que han de estar rellenos
 	-Si los campos de "nombre" y/o "email" se encuentran repetidos nos dirá que se encuentran repetidos en la DB.
 	-Si introducimos los campos correctos y "nombre" y/o "email" no se encuentran repetidos, se añadirá a nuestra DB.
 
-*Para utilizar los filtros deberemos de introducir en la url "localhost:3000/api/v1/anuncio" seguida de "?" y el filtro que deseamos visualizar con su correspondiente asignación de valor. Los filtros disponibles con un ejemplo adherido serían los siguientes:
+Para utilizar los filtros deberemos de introducir en la url "localhost:3000/api/v1/anuncio" seguida de "?" y el filtro que deseamos visualizar con su correspondiente asignación de valor. Los filtros disponibles con un ejemplo adherido serían los siguientes:
 
 	-Por tag: Utilizaremos la siguiente estructura en la url (PE:"localhost:3000/api/v1/anuncio?tags=lifestyle"), esto nos devolverá todos los anuncios que posean el tag de lifestyle.
 
