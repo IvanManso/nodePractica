@@ -53,6 +53,21 @@ anuncioSchema.statics.list = function(filter, sort, limit, start, cb) {
  * Realizaremos una petición básica de POST para introducir un anuncio
  */
 
+ /**
+ * @api {post} /api/v1/anuncio
+ * @apiSuccessExample {json} Success-Response:
+ *     {
+ *       "result": true
+ *     }
+ *     {
+ *      "nombre": "Camión",
+ *       "venta": true,
+ *       "precio": 600.15,
+ *       "foto": "camión.jpg",
+ *       "tags": ["lifestyle", "motor"]
+ *     }
+ */
+
 router.post("/", function(req, res) {
     var spot = new Anuncio(req.body);
     spot.save(function(err, rows) {
@@ -68,6 +83,17 @@ router.post("/", function(req, res) {
  * Realizaremos una petición básica de DELETE para borrar un anuncio
  */
 
+ /**
+ * @api {delete} /api/v1/anuncio
+ * @apiSuccessExample {json} Success-Response:
+ *     {
+ *       "result": true
+ *     }
+ *     {
+ *
+ *     }
+ */
+
 router.delete("/", function(req, res) {
     var spot = new Anuncio(req.body);
     spot.remove(function(err) {
@@ -81,6 +107,21 @@ router.delete("/", function(req, res) {
 
 /**
  * Realizaremos una petición básica de PUT para editar un anuncio
+ */
+
+ /**
+ * @api {put} /api/v1/anuncio
+ * @apiSuccessExample {json} Success-Response:
+ *     {
+ *       "result": true
+ *     }
+ *     {
+ *      "nombre": "Bicicleta",
+ *       "venta": true,
+ *       "precio": 23.15,
+ *       "foto": "bici.jpg",
+ *       "tags": ["lifestyle", "ciclismo"]
+ *     }
  */
 
 router.put("/:id", function(req, res) {

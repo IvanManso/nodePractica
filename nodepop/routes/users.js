@@ -16,6 +16,19 @@ router.get('/', function(req, res, next) {
 Tras esto comprobamos si el nombre ya se encuentra en nuestra DB y si este no se encuentra realizamos la misma comprobación con el email. Si no se encuentran en la DB se registrará con éxito.
  */
 
+/**
+ * @api {post} /routes/users
+ * @apiSuccessExample {json} Success-Response:
+ *     {
+ *       "result": true
+ *     }
+ *     {
+ *       "nombre": "Jacinto",
+ *       "email": "jacinto@gmail.com",
+ *       "clave": "hash(jacinto)"
+ *     }
+ */
+
 router.post("/", function(req, res) {
     validar(req, res);
 });

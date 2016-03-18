@@ -13,6 +13,21 @@ router.use(auth());
  * Aquí realizamos la petición de anuncios a través de filtros, para ello obtenelos los parámetros de la query de nuestra request y para el filtro de precio utilizaremos patrones y la el método "split()" que nos dividirá un string a partir del carácter que le digamos en un array.
  */
 
+/**
+ * @api {get} /api/v1/anuncio
+ * @apiSuccessExample {json} Success-Response:
+ *     {
+ *       "result": true
+ *     }
+ *     {
+ *      "nombre": "Bicicleta",
+ *       "venta": true,
+ *       "precio": 230.15,
+ *       "foto": "bici.jpg",
+ *       "tags": ["lifestyle", "motor"]
+ *     }
+ */
+
 router.get('/', function(req, res) {
     var nombre = req.query.nombre || "";
     var venta = req.query.venta || "";
