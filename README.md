@@ -1,4 +1,4 @@
-										###INTRUCCIONES DE USO DE NODEPOP
+										#INTRUCCIONES DE USO DE NODEPOP
 
 
 ##INSTALACIÓN
@@ -43,6 +43,6 @@
 
 	-Por start: Utilizaremos la siguiente estructura en la url (PE:"localhost:3000/api/v1/anuncio?start=2"), nos mostrará los anuncios existente a partir del número de anuncio asignado.
 
-#Estas serían las funciones principales de esta primera versión de nodepop.
+###Estas serían las funciones principales de esta primera versión de nodepop.
 
 
