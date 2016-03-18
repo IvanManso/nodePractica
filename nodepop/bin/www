@@ -19,6 +19,11 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
+
+ /**
+ * Utilizamos clusters (1 por cada núcleo) para evitar saturación y mejorar el rendimiento en paralelo
+ */
+
 let cluster = require("cluster");
 
 if(cluster.isMaster){

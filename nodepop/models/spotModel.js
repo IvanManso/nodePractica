@@ -6,7 +6,9 @@ var router = express.Router();
 var conn = require('../lib/connectMongoose');
 var mongoose = require("mongoose");
 
-//var conn = require('../lib/connectMongo'); conectar con drivers
+/**
+ * En esta parte utilizaremos un esquema a través de mongoose para establecer el tipo de parámetros que debe de llevar cada anuncio.
+ */
 
 //Creo el esquema
 
@@ -18,13 +20,12 @@ var anuncioSchema = mongoose.Schema({
     tags: [String]
 });
 
+/**
+ * Utilizaremos de manera estática un listado que tendrá asignada una función a la que le llegarán los filtros y el callback correspondiente.
+ */
+
 anuncioSchema.statics.list = function(filter, sort, limit, start, cb) {
-    //preparamos la query sin ejecutarla (no ponemos callback a find)
-    console.log(filter);
-    console.log(limit);
     var query = Spot.find(filter);
-    //console.log(query);
-    //añadimos más parámetros a la query
     if (sort !== null) {
         query.sort(sort);
     }
@@ -33,7 +34,7 @@ anuncioSchema.statics.list = function(filter, sort, limit, start, cb) {
         query.limit(limit);
     }
 
-    if(start !== null){
+    if (start !== null) {
         query.skip(start);
     }
 
@@ -48,6 +49,10 @@ anuncioSchema.statics.list = function(filter, sort, limit, start, cb) {
     });
 };
 
+/**
+ * Realizaremos una petición básica de POST para introducir un anuncio
+ */
+
 router.post("/", function(req, res) {
     var spot = new Anuncio(req.body);
     spot.save(function(err, rows) {
@@ -59,7 +64,12 @@ router.post("/", function(req, res) {
     });
 });
 
+/**
+ * Realizaremos una petición básica de DELETE para borrar un anuncio
+ */
+
 router.delete("/", function(req, res) {
+    var spot = new Anuncio(req.body);
     spot.remove(function(err) {
         if (err) {
             return res.json({ result: false, err: err });
@@ -69,7 +79,12 @@ router.delete("/", function(req, res) {
     });
 });
 
+/**
+ * Realizaremos una petición básica de PUT para editar un anuncio
+ */
+
 router.put("/:id", function(req, res) {
+    var spot = new Anuncio(req.body);
     spot.update({ id: req.params.id }, { $set: req.body }, { multi: false }, function(err, data) {
         if (err) {
             return res.json({ result: false, err: err });

@@ -1,13 +1,15 @@
 "use strict";
 
+
 require('../models/userModel.js');
-//require('basic-auth-mongoose');
 var passwordHash = require('sha256');
 var basicAuth = require("basic-auth");
 var mongoose = require("mongoose");
 var User = mongoose.model("User");
 
-/*    PREGUNTAR MAÑANA ( COMENTARIOS AQUÍ Y EN ANUNCIO.JS HAY 2) */
+/**
+ * Dicha función se encarga de la autentificación del usuario. Para ello comprobará que el nombre y la clave nos sean vacíos y, una vez comprobado esto, se dispondrá a hashear la clave introducida y buscar el nombre de usuario introducido en la DB y comprobar si corresponde la clave con la del usuario buscado.
+ */
 
 var fn = function() {
     return function(req, res, next) {

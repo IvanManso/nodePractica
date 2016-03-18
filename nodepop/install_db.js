@@ -11,9 +11,11 @@ var mongoose = require("mongoose");
 var Anuncio = mongoose.model("Spot");
 var User = mongoose.model("User");
 
+/**
+ * Cargamos los anuncios que se encuentren en el archivo .JSON que tenemos creado por defecto. Los carga de manerá síncrona con un for (se precisa de mejor para realizarlo de manera asíncrona. PE: con async)
+ */
 
 function cargaAnunciosDefect(callback) {
-    //anuncios.remove({});
     Anuncio.remove({}, function(err) {
         if (err) {
             return cb(err);
@@ -22,12 +24,11 @@ function cargaAnunciosDefect(callback) {
         fs.readFile("./anuncios.json", { encoding: "utf8" }, function(error, data) {
             if (error) {
                 console.log("Ha habido un error: \n", err);
-            } else { //o lanzar excepción o return; o return console.log(...);
-                var defecto = JSON.parse(data); //ahora recorremos el array
+            } else {
+                var defecto = JSON.parse(data);
                 for (var i = 0; i < defecto.anuncios.length; i++) {
                     var anuncio = new Anuncio(defecto.anuncios[i]);
                     anuncio.save(function(err, saved) {
-                        //console.log("Los datos del anuncio son", data.anuncios[i]);
                         if (err) {
                             console.log("Ha ocurrido un error con el anuncio", err);
                             return;
@@ -36,15 +37,17 @@ function cargaAnunciosDefect(callback) {
                     });
                 }
             }
-            //console.log(defecto);
             console.log("FIN");
         });
     });
 
 }
 
+/**
+ * Cargamos los usuarios que se encuentren en el archivo .JSON que tenemos creado por defecto. Los carga de manerá síncrona con un for (se precisa de mejor para realizarlo de manera asíncrona. PE: con async)
+ */
+
 function cargaUsuariosDefect(callback) {
-    //anuncios.remove({});
     User.remove({}, function(err) {
         if (err) {
             return cb(err);
@@ -53,8 +56,8 @@ function cargaUsuariosDefect(callback) {
         fs.readFile("./usuarios.json", { encoding: "utf8" }, function(error, data) {
             if (error) {
                 console.log("Ha habido un error: \n", err);
-            } else { //o lanzar excepción o return; o return console.log(...);
-                var defecto = JSON.parse(data); //ahora recorremos el array
+            } else {
+                var defecto = JSON.parse(data);
                 for (var i = 0; i < defecto.usuarios.length; i++) {
                     var user = new User(defecto.usuarios[i]);
                     console.log(user["nombre"]);
@@ -62,7 +65,6 @@ function cargaUsuariosDefect(callback) {
                     user.clave = passwordHash(user["clave"]);
                     console.log(user["clave"]);
                     user.save(function(err, saved) {
-                        //console.log("Los datos del anuncio son", data.anuncios[i]);
                         if (err) {
                             console.log("Ha ocurrido un error con el usuario", err);
                             return;
@@ -79,6 +81,9 @@ function cargaUsuariosDefect(callback) {
 
 }
 
+/**
+ * Llamamos a la función de carga de anuncios
+ */
 
 cargaAnunciosDefect(function(err, str) {
     if (err) {
@@ -88,6 +93,10 @@ cargaAnunciosDefect(function(err, str) {
     console.log("Anuncios por defecto cargados \n ", str);
 
 });
+
+/**
+ * Llamamos a la función de carga de usuarios
+ */
 
 cargaUsuariosDefect(function(err, str) {
     if (err) {
