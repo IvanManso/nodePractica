@@ -12,6 +12,8 @@
 *Para iniciar Nodepop eliminando los datos que se encuentran en la DB y que aparezcan los datos por defecto ejecutar comando:
 `$npm run install_db` (ya que en dicha variable tenemos introducido el script que queremos que se ejecute al iniciar la app).
 
+*Deberás tener abierta la conexión a la DB de Mongo y un terminal en el que corras la API.
+
 ##FUNCIONALIDADES
 
 *Para poder visualizar los anuncios predefinidos debemos de estar registrados en la BD (además de esto encontrarnos en la url "localhost:3000/api/v1/anuncio", por ello debemos hacer login con un user y pass correctos:
