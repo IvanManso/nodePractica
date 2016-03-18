@@ -1,3 +1,8 @@
+#DESCRIPCIÓN
+
+*Desarrollo de una API mediante el uso de las tecnologías Node.js, express y Mongo.db.
+*Nodepop es una plataforma de venta o búsqueda de artículos de segunda mano.
+
 #INTRUCCIONES DE USO DE NODEPOP
 
 ##INSTALACIÓN
